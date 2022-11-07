@@ -37,7 +37,7 @@
         $(".supporter-list-posts").removeClass("active");
 
         $('#addScheduleAllDoctors').on('click', function(event) {
-            if (!confirm('This action will create schedule for all doctor in the next 3 days. Continue?')) {
+            if (!confirm('Hành động này sẽ thêm lịch khám cho tất cả bác sĩ trong vòng 7 ngày tới. Tiếp tục?')) {
                 return;
             }
             $.ajax({

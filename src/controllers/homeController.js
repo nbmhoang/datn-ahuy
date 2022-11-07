@@ -55,7 +55,7 @@ let getDetailSpecializationPage = async (req, res) => {
         let currentDate = moment().format('DD/MM/YYYY');
         let doctors = await doctorService.getDoctorsForSpecialization(req.params.id, currentDate);
         let sevenDaySchedule = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 7; i++) {
             let date = moment(new Date()).add(i, 'days').locale('en').format('dddd - DD/MM/YYYY');
             sevenDaySchedule.push(date);
         }
@@ -80,7 +80,7 @@ let getDetailDoctorPage = async (req, res) => {
     try {
         let currentDate = moment().format('DD/MM/YYYY');
         let sevenDaySchedule = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 7; i++) {
             let date = moment(new Date()).add(i, 'days').locale('en').format('dddd - DD/MM/YYYY');
             sevenDaySchedule.push(date);
         }
@@ -126,7 +126,7 @@ let getDetailClinicPage = async (req, res) => {
     try {
         let currentDate = moment().format('DD/MM/YYYY');
         let sevenDaySchedule = [];
-        for (let i = 0; i < 5; i++) {
+        for (let i = 0; i < 7; i++) {
             let date = moment(new Date()).add(i, 'days').locale('en').format('dddd - DD/MM/YYYY');
             sevenDaySchedule.push(date);
         }

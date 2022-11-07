@@ -225,7 +225,7 @@ let createAllDoctorsSchedule = () => {
                 '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00'
             ]
             let threeDaySchedules = [];
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 7; i++) {
                 let date = moment(new Date()).add(i, 'days').locale('en').format('DD/MM/YYYY');
                 threeDaySchedules.push(date);
             }
@@ -271,9 +271,9 @@ let createAllDoctorsSchedule = () => {
                         })
                     )
                 }
-                resolve("Cuộc hẹn được tạo thành công (trong 3 ngày). Vui lòng kiểm tra cơ sở dữ liệu của bạn (schedule table)")
+                resolve("Lịch khám cho toàn bộ bác sĩ được tạo thành công (trong 7 ngày). Vui lòng kiểm tra cơ sở dữ liệu của bạn (schedule table)")
             }else {
-                resolve("Cuộc hẹn đã được lặp lại. Vui lòng kiểm tra cơ sở dữ liệu của bạn (schedule table)")
+                resolve("Lịch khám đã tồn tại. Vui lòng kiểm tra lại cơ sở dữ liệu của bạn (schedule table)")
             }
         } catch (e) {
             reject(e);

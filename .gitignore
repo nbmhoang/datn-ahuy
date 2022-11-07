@@ -3,6 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
+/src/controllers/public/images/patients
 
 .env.backup
 .env
