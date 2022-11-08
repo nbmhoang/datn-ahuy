@@ -97,6 +97,8 @@ let initRoutes = (app) => {
 
     router.get('/users/manage/specialization', auth.checkLoggedIn, admin.getSpecializationPage);
     router.get('/users/manage/supporter', auth.checkLoggedIn, admin.getSupporterPage);
+    router.get('/users/manage/supporter/create', auth.checkLoggedIn, admin.getCreateSupporter);
+    router.post('/admin/supporter/create', auth.checkLoggedIn, admin.postCreateSupporter);
     router.get('/users', auth.checkLoggedIn, home.getUserPage);
 
     router.get('/users/manage/bot', auth.checkLoggedIn, admin.getManageBotPage);
@@ -150,6 +152,7 @@ let initRoutes = (app) => {
     router.delete('/admin/delete/doctor', auth.checkLoggedIn, admin.deleteDoctorById);
     router.delete('/admin/delete/specialization', auth.checkLoggedIn, admin.deleteSpecializationById);
     router.delete('/admin/delete/post', auth.checkLoggedIn, admin.deletePostById);
+    router.delete('/admin/delete/supporter', auth.checkLoggedIn, admin.deleteSupporterById);
 
     router.get("/login", auth.checkLoggedOut, auth.getLogin);
 

@@ -211,6 +211,24 @@ let getSupporterById = (id) => {
     }));
 };
 
+const deleteSupporterById = (id) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            await db.User.destroy({
+                where: {
+                    id: id,
+                    roleId: 3
+                }
+            });
+            await db.Supporter_User.destroy({ where: { supporterId: id } });
+
+            resolve('delete successful')
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 module.exports = {
     postCreatePost: postCreatePost,
     getAllPosts: getAllPosts,
@@ -220,5 +238,6 @@ module.exports = {
     deletePostById: deletePostById,
     putUpdatePost: putUpdatePost,
     doneComment: doneComment,
-    getSupporterById: getSupporterById
+    getSupporterById: getSupporterById,
+    deleteSupporterById
 };

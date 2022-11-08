@@ -294,6 +294,25 @@ let getAllDoctorsSchedule = () => {
         }
     })
 }
+
+const createSupporter = (supporter) => {
+    supporter.roleId = 3;
+    supporter.password = bcrypt.hashSync(supporter.password, salt);
+    return new Promise((async (resolve, reject) => {
+        const newSupporter = await db.User.create(supporter);
+        const data = {
+            supporterId: newSupporter.id,
+            clinicId: supporter.clinicId,
+            specializationId: supporter.specializationId
+        };
+        await db.Supporter_User.create(data);
+
+        //create doctor elastic
+
+        resolve(newSupporter)
+    }));
+};
+
 module.exports = {
     createDoctor: createDoctor,
     getInfoDoctors: getInfoDoctors,
@@ -303,5 +322,6 @@ module.exports = {
     getInfoStatistical: getInfoStatistical,
     getInfoDoctorChart: getInfoDoctorChart,
     createAllDoctorsSchedule: createAllDoctorsSchedule,
-    getAllDoctorsSchedule: getAllDoctorsSchedule
+    getAllDoctorsSchedule: getAllDoctorsSchedule,
+    createSupporter
 };

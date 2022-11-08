@@ -1199,6 +1199,54 @@ function handleFindStatisticalAdmin(){
     })
 }
 
+const createNewSupporter = () => {
+    $('#createNewSupporter').on('click', function(e) {
+        e.preventDefault();
+        let formData = new FormData($('form#formCreateNewSupporter')[0]);
+        let data = {};
+        for (let pair of formData.entries()) {
+            data[pair[0]] = pair[1]
+        }
+        $.ajax({
+            method: "POST",
+            url: `${window.location.origin}/admin/supporter/create`,
+            data: data,
+            success: function(data) {
+                alert('Create a new supporter succeeds');
+                window.location.href = `${window.location.origin}/users/manage/supporter`;
+            },
+            error: function(error) {
+                alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+                console.log(error);
+            }
+        });
+    });
+}
+
+const deleteSupporterById = () => {
+    $('.delete-supporter-info').on('click', function(e) {
+        if (!confirm('Delete this supporter?')) {
+            return
+        }
+
+        const id = $(this).data('supporter-id');
+        let node = this;
+        $.ajax({
+            method: 'DELETE',
+            url: `${window.location.origin}/admin/delete/supporter`,
+            data: { id: id },
+            success: function(data) {
+                node.closest("tr").remove();
+                alertify.success('Delete succeeds');
+            },
+            error: function(err) {
+                alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+                console.log(err)
+            }
+        });
+    });
+}
+
 $(document).ready(function(e) {
     // $('.modal').on('hidden.bs.modal', function(e) {
     //     $(this).removeData();
@@ -1274,5 +1322,7 @@ $(document).ready(function(e) {
     let month = new Date().getMonth();
     statisticalAdmin(month+1);
     handleFindStatisticalAdmin();
+    createNewSupporter();
+    deleteSupporterById();
 });
 

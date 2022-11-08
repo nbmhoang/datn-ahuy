@@ -422,6 +422,38 @@ let getInfoStatistical = async (req, res) => {
     }
 };
 
+let getCreateSupporter = async (req, res) => {
+    let clinics = await homeService.getClinics();
+    let specializations = await homeService.getSpecializations();
+    return res.render("main/users/admins/createSupporter.ejs", {
+        user: req.user,
+        clinics: clinics,
+        specializations: specializations
+    });
+};
+
+const postCreateSupporter = async (req, res) => {
+    const { body } = req;
+    // const { name, phone, email, password, address, description } = body;
+    const supporter = {
+        name: body.name,
+        email: body.email,
+        address: body.address,
+        password: body.password,
+        description: body.description,
+        clinicId: body.clinic,
+        specializationId: body.specialization,
+        avatar: 'supporter.png'
+    };
+    try {
+        await userService.createSupporter(supporter);
+        return res.status(200).json({ message: 'success' })
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ error: err })
+    }
+};
+
 module.exports = {
     getManageDoctor: getManageDoctor,
     getCreateDoctor: getCreateDoctor,
@@ -449,5 +481,9 @@ module.exports = {
     deleteClinicById: deleteClinicById,
     deleteDoctorById: deleteDoctorById,
     deleteSpecializationById: deleteSpecializationById,
-    deletePostById: deletePostById
+    deletePostById: deletePostById,
+
+    getCreateSupporter,
+    postCreateSupporter,
+    deleteSupporterById
 };
