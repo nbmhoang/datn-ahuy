@@ -48,6 +48,7 @@ export const transMailRemedy= {
     subject: "Email về việc gửi hóa đơn y tế từ bác sĩ qua email",
     template: (data) => {
         return `<h3>Cảm ơn bạn đã tin tưởng đặt lịch khám tại hệ thống của bệnh viện Quốc tế Huế </h3>
+        Bạn đã được chẩn đoán <b>${data.prediction}</b> và đây là đơn thuốc bác sĩ gửi đến cho bạn: <b>${data.prescription}</b>
         Sau khi bạn đã đến phòng khám của bác sĩ <b> ${data.doctor} </b>, bạn có thể xem lại chi tiết thanh toán từ tệp đính kèm email này. </h4>
         <div>Mật khẩu để trích xuất tệp đính kèm có dạng sau: <i>Họ và tên không dấu - 3 chữ số đầu số điện thoại - 2 chữ số cuối năm sinh của bạn</div>
         <br>

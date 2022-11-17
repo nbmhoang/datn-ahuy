@@ -151,7 +151,7 @@ let postSendFormsToPatient = (req, res) => {
         }
         try {
 
-            let patient = await doctorService.sendFormsForPatient(req.body.patientId, req.files);
+            let patient = await doctorService.sendFormsForPatient(req.body.patientId, req.files, req.body.prediction, req.body.prescription);
             return res.status(200).json({
                 status: 1,
                 message: 'sent files success',

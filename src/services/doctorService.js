@@ -374,7 +374,7 @@ let removeAccents = (str) => {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
 };
 
-let sendFormsForPatient = (id, files) => {
+let sendFormsForPatient = (id, files, prediction, prescription) => {
     return new Promise(async (resolve, reject) => {
         try {
             let patient = await patientService.getDetailPatient(id);
@@ -395,7 +395,7 @@ let sendFormsForPatient = (id, files) => {
             let pathZip = `${PATH_ZIP}/${nameZip}`;
             fs.writeFileSync(pathZip, new Buffer(mz.zip()));
             let filename = `Information-invoice-${patient.dateBooking}.zip`;
-            let data = { doctor: doctor.name };
+            let data = { doctor: doctor.name, prediction, prescription };
             await mailer.sendEmailWithAttachment(patient.email, transMailRemedy.subject, transMailRemedy.template(data), filename, pathZip);
             await patient.update({
                 isSentForms: true
