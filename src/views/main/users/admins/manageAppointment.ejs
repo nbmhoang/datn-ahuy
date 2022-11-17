@@ -56,6 +56,12 @@
                                         class="btn btn-primary doctor-send-forms">
                                     Gửi hóa đơn
                                 </button>
+                                <button title="" type="button"
+                                        data-patient-id="<%= x.id %>"
+                                        data-is-send-forms="<%= x.isSentForms %>"
+                                        class="btn btn-primary doctor-send-forms">
+                                    In
+                                </button>
                                 <% if(x.isSentForms){ %>
                                     <i title="Đã gửi hóa đơn" data-patient-id="<%= x.id %>" class="fa fa-check-circle" style="color: #36b9cc"
                                        aria-hidden="true"></i>
@@ -457,6 +463,13 @@
                                     <label class="col-form-label text-label" for="filesSend">Chọn files:</label>
                                     <input type="file" class="form-control-file" id="filesSend" name="filesSend"
                                            multiple>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label class="col-form-label text-label" for="donthuoc">Đơn thuốc:</label>
+                                    <textarea type="text" class="form-control" id="donthuoc" name="donthuoc">
+                                    </textarea>
                                 </div>
                             </div>
 
