@@ -7,6 +7,8 @@ module.exports = (sequelize, DataTypes) => {
         oldForms: DataTypes.TEXT,
         sendForms: DataTypes.TEXT,
         moreInfo: DataTypes.TEXT,
+        prediction: DataTypes.TEXT,
+        prescription: DataTypes.TEXT,
         createdAt: DataTypes.DATE,
         updatedAt: DataTypes.DATE,
         deletedAt: DataTypes.DATE,

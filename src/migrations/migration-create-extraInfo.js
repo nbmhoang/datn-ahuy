@@ -37,6 +37,14 @@ module.exports = {
             deletedAt: {
                 allowNull: true,
                 type: Sequelize.DATE
+            },
+            prediction: {
+                allowNull: true,
+                type: Sequelize.TEXT
+            },
+            prescription: {
+                allowNull: true,
+                type: Sequelize.TEXT
             }
         });
     },

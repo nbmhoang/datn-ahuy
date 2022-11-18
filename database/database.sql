@@ -130,6 +130,8 @@ CREATE TABLE IF NOT EXISTS `extrainfos` (
   `createdAt` datetime NOT NULL,
   `updatedAt` datetime DEFAULT NULL,
   `deletedAt` datetime DEFAULT NULL,
+  `prediction` text DEFAULT NULL,
+  `prescription` text DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
 

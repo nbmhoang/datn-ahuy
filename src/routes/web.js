@@ -125,6 +125,7 @@ let initRoutes = (app) => {
     router.post('/doctor/manage/schedule/create', auth.checkLoggedIn, doctor.postCreateSchedule);
     router.post('/doctor/get-schedule-doctor-by-date', doctor.getScheduleDoctorByDate);
     router.get('/doctor/manage/appointment', auth.checkLoggedIn, doctor.getManageAppointment);
+    router.get('/doctor/manage/appointment/print/:id', auth.checkLoggedIn, doctor.previewPrescription);
     router.get('/doctor/manage/chart', auth.checkLoggedIn, doctor.getManageChart);
     router.post('/doctor/manage/create-chart', auth.checkLoggedIn, doctor.postCreateChart);
     router.post('/doctor/send-forms-to-patient', auth.checkLoggedIn, doctor.postSendFormsToPatient);

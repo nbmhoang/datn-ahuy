@@ -1255,87 +1255,89 @@ const showModalPrintForms = () => {
         let patientId = $(this).attr('data-patient-id');
         let isSend = $(this).attr('data-is-send-forms');
 
-        $.ajax({
-            url: `${window.location.origin}/api/get-detail-patient-by-id`,
-            method: "POST",
-            data: { patientId: patientId },
-            success: function(data) {
-                let html = '';
-                $('#divGenerateFilesSend').empty();
-                $('#emailPatient').val(data.email);
-                $('#agePatient').val(new Date().getFullYear() - data.year);
-                $('#address').val(data.address)
-                $('#gender').val(data.gender === 'male' ? 'Nam' : 'Nữ')
-                $('#btnSendFilesForms').attr('data-patient-id', patientId);
-                if (data.ExtraInfo) {
-                    if (data.ExtraInfo.sendForms) {
-                        let images = JSON.parse(data.ExtraInfo.sendForms);
-                        for (let [ key, value ] of Object.entries(images)) {
-                            html += `
-                              <div class="form-row">
-                                <div class="form-group col-9">
-                                    <a type="text" class="form-control" id="nameFileSent" target="_blank" href="/images/patients/remedy/${value}" readonly="true" title="${value}" >
-                               ${value}
-                                </a>
-                                </div>
-                             </div>`;
-                        }
-                    } else {
-                        html = `
-                          <div class="form-row">
-                            <div class="form-group col-9">
-                                <label class="col-form-label text-label" for="nameFileSent"> Tên file:</label>
-                                <input type="text" class="form-control" id="nameFileSent" name="nameFileSent" disabled>
-                            </div>
-                         </div>`
-                    }
-                }
-                $('#divGenerateFilesSend').append(html);
-                $('#modalSendForms').modal('show');
+        window.open(`${window.location.origin}/doctor/manage/appointment/print/${patientId}`, '_blank').focus();
 
-                const doc = new jsPDF();       
+        // $.ajax({
+        //     url: `${window.location.origin}/api/get-detail-patient-by-id`,
+        //     method: "POST",
+        //     data: { patientId: patientId },
+        //     success: function(data) {
+        //         let html = '';
+        //         $('#divGenerateFilesSend').empty();
+        //         $('#emailPatient').val(data.email);
+        //         $('#agePatient').val(new Date().getFullYear() - data.year);
+        //         $('#address').val(data.address)
+        //         $('#gender').val(data.gender === 'male' ? 'Nam' : 'Nữ')
+        //         $('#btnSendFilesForms').attr('data-patient-id', patientId);
+        //         if (data.ExtraInfo) {
+        //             if (data.ExtraInfo.sendForms) {
+        //                 let images = JSON.parse(data.ExtraInfo.sendForms);
+        //                 for (let [ key, value ] of Object.entries(images)) {
+        //                     html += `
+        //                       <div class="form-row">
+        //                         <div class="form-group col-9">
+        //                             <a type="text" class="form-control" id="nameFileSent" target="_blank" href="/images/patients/remedy/${value}" readonly="true" title="${value}" >
+        //                        ${value}
+        //                         </a>
+        //                         </div>
+        //                      </div>`;
+        //                 }
+        //             } else {
+        //                 html = `
+        //                   <div class="form-row">
+        //                     <div class="form-group col-9">
+        //                         <label class="col-form-label text-label" for="nameFileSent"> Tên file:</label>
+        //                         <input type="text" class="form-control" id="nameFileSent" name="nameFileSent" disabled>
+        //                     </div>
+        //                  </div>`
+        //             }
+        //         }
+        //         $('#divGenerateFilesSend').append(html);
+        //         $('#modalSendForms').modal('show');
+
+        //         const doc = new jsPDF();       
             
-                const elementHandler = {
-                    '#ignorePDF': function (element, renderer) {
-                        return true;
-                    }
-                };
-                // const source = window.document.getElementsByName('test-ne')[0]
-                // const source = window.document.getElementById('accordionSidebar')
-                // console.log(source)
-                // doc.html(
-                //     source,
-                //     {
-                //         // callback: (doc) => setTimeout(() => doc.save(), 2000),
-                //         filename: `${patientId}.pdf`,
-                //         width: 800
-                //     }
-                // )
+        //         const elementHandler = {
+        //             '#ignorePDF': function (element, renderer) {
+        //                 return true;
+        //             }
+        //         };
+        //         // const source = window.document.getElementsByName('test-ne')[0]
+        //         // const source = window.document.getElementById('accordionSidebar')
+        //         // console.log(source)
+        //         // doc.html(
+        //         //     source,
+        //         //     {
+        //         //         // callback: (doc) => setTimeout(() => doc.save(), 2000),
+        //         //         filename: `${patientId}.pdf`,
+        //         //         width: 800
+        //         //     }
+        //         // )
 
-                // doc.output('dataurlnewwindow');
-                setTimeout(() => {
-                    const htmlElement = document.getElementsByName("test-ne")[0]
-                    html2canvas(htmlElement, {
-                        allowTaint: true,
-                        useCORS: true,
-                      })
-                    .then(function (canvas) {
-                        // It will return a canvas element
-                        let image = canvas.toDataURL("image/png", 0.5);
-                        console.log(image)
-                        doc.addImage(image, 'JPEG', 0, 0, 800, 670);
-                        doc.output('dataurlnewwindow');
-                    });
+        //         // doc.output('dataurlnewwindow');
+        //         setTimeout(() => {
+        //             const htmlElement = document.getElementsByName("test-ne")[0]
+        //             html2canvas(htmlElement, {
+        //                 allowTaint: true,
+        //                 useCORS: true,
+        //               })
+        //             .then(function (canvas) {
+        //                 // It will return a canvas element
+        //                 let image = canvas.toDataURL("image/png", 0.5);
+        //                 console.log(image)
+        //                 doc.addImage(image, 'JPEG', 0, 0, 800, 670);
+        //                 doc.output('dataurlnewwindow');
+        //             });
                 
-                }, 2000);
+        //         }, 2000);
                 
                 
-            },
-            error: function(error) {
-                console.log(error);
-                alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
-            }
-        });
+        //     },
+        //     error: function(error) {
+        //         console.log(error);
+        //         alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+        //     }
+        // });
     });
 }
 

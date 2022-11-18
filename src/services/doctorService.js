@@ -414,7 +414,9 @@ let sendFormsForPatient = (id, files, prediction, prescription) => {
                     image[count + index] = x.filename;
                 });
                 await patient.ExtraInfo.update({
-                    sendForms: JSON.stringify(image)
+                    sendForms: JSON.stringify(image),
+                    prediction,
+                    prescription
                 });
             }
 

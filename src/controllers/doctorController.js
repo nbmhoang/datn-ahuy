@@ -200,6 +200,12 @@ let postAutoCreateAllDoctorsSchedule = async (req, res) => {
 }
 
 
+const previewPrescription = async(req, res) => {
+    return res.render('main/users/admins/printPrescription.ejs', {
+        user: req.user
+    })
+}
+
 module.exports = {
     getSchedule: getSchedule,
     getCreateSchedule: getCreateSchedule,
@@ -210,5 +216,6 @@ module.exports = {
     getManageChart: getManageChart,
     postSendFormsToPatient: postSendFormsToPatient,
     postCreateChart: postCreateChart,
-    postAutoCreateAllDoctorsSchedule: postAutoCreateAllDoctorsSchedule
+    postAutoCreateAllDoctorsSchedule: postAutoCreateAllDoctorsSchedule,
+    previewPrescription
 };

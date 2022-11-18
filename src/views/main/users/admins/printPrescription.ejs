@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đơn thuốc bệnh nhân</title>
+    <style>
+      body {
+        font-size: 20px;
+        margin: 0 auto;
+        height: 563px;
+        width: 750px;
+        font-family: 'Times New Roman', Times, serif;
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+      }
+      div {
+        margin-top: 5px;
+        margin-bottom: 5px;
+      }
+      .header {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      .title {
+        text-align: center;
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 24px;
+        margin-bottom: 24px;
+      }
+      .footer {
+        align-self: flex-end;
+        text-align: center;
+      }
+    </style>
+    <script src="/components/admin/vendor/jquery/jquery.min.js"></script>
+</head>
+<body>
+    <div class="main">
+      <div class="header">
+        <div style="text-align: center;">
+          <div>BỘ Y TẾ HUẾ</div>
+          <div style="font-weight: bold;text-decoration-line: underline">BỆNH VIỆN QUỐC TẾ HUẾ</div>
+        </div>
+        <em style="text-align: center;font-weight: bold;font-size: 12px;">
+          <div>Phụ lục số 01</div>
+          <div>Ban hành theo Thông tư số<br>05/2016/TT-BYT ngày 29 tháng 02 năm 2016<br>của Bộ trưởng Bộ Y tế</div>
+        </em>
+      </div>
+      <div class="title">
+        ĐƠN THUỐC
+      </div>
+      <div style="display: flex;justify-content:space-between">
+        <div>Họ và tên: <span id="name"></span></div>
+        <div>Tuổi: <span id="age"></span></div>
+        <div>Giới tính: <span id="gender"></span></div>
+      </div>
+      <div>
+        Địa chỉ: <span id="address"></span>
+      </div>
+      <div>
+        Số thẻ Bảo hiểm y tế(nếu có):
+      </div>
+      <div>
+        Chẩn đoán: <span id="prescription"></span>
+      </div>
+      <div>
+        <b>
+          Thuốc điều trị:
+        </b>
+        <div id="prediction"></div>
+      </div>
+  </div>
+  <div class="footer">
+    <div>
+      Ngày <span id="day"></span> tháng <span id="month"></span> năm <span id="year"></span>
+    </div>
+    <div>Bác sĩ khám bệnh</div>
+    <em>(Kí, ghi rõ họ tên)</em>
+  </div>
+</body>
+<script lang="javascript">
+  $(async function() {
+
+    const today = new Date();
+    $('#day').html(today.getDate())
+    $('#month').html(today.getMonth())
+    $('#year').html(today.getFullYear());
+
+    const getPatientData = async() => {
+      const patientId = window.location.pathname.split('/').at(-1);
+      await $.post({
+        url: `${window.location.origin}/api/get-detail-patient-by-id`,
+        data: {
+          patientId
+        },
+        success: (data) => {
+          const { name, address, year, gender, ExtraInfo } = data;
+          $('#name').html(name)
+          $('#address').html(address)
+          $('#age').html(new Date().getFullYear() - year)
+          $('#gender').html(gender === 'male' ? 'Nam' : 'Nữ')
+          $('#prescription').html(ExtraInfo.prescription);
+          $('#prediction').html(ExtraInfo.prediction)
+        }
+      })
+    }
+
+    await getPatientData();
+
+    print();
+
+  });
+</script>
+</html>
+
+
