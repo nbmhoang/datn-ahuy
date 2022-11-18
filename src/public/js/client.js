@@ -586,7 +586,7 @@ function handleSearchHomepage() {
                     data.clinics.forEach((clinic) => {
                         html += `
                          <div class="child-info">
-                                <a href="detail/clinic/${clinic.id}">Phòng khám - ${clinic.name}</a>
+                                <a href="detail/clinic/${clinic.id}">Viện, Phòng ban, Trung tâm - ${clinic.name}</a>
                         </div>
                         `;
                     });
@@ -594,7 +594,7 @@ function handleSearchHomepage() {
                     data.specializations.forEach((specialization) => {
                         html += `
                          <div class="child-info">
-                                <a href="detail/specialization/${specialization.id}">Chuyên gia - ${specialization.name}</a>
+                                <a href="detail/specialization/${specialization.id}">Chuyên khoa - ${specialization.name}</a>
                         </div>
                         `;
                     });

@@ -562,7 +562,7 @@ let sendMessageMedicalExamination = (sender_psid) => {
                     },
                     {
                         "content_type": "text",
-                        "title": "Phòng khám",
+                        "title": "Viện, Phòng ban, Trung tâm",
                         "payload": "CLINICS",
                     },
                     {
@@ -646,7 +646,7 @@ let sendMessageReplyDoctors = (sender_psid) => {
                                     },
                                     {
                                         "type": "postback",
-                                        "title": "Phòng khám",
+                                        "title": "Viện, Phòng ban, Trung tâm",
                                         "payload": "CLINICS",
                                     }
                                 ],
@@ -661,7 +661,7 @@ let sendMessageReplyDoctors = (sender_psid) => {
                 "quick_replies": [
                     {
                         "content_type": "text",
-                        "title": "Phòng khám",
+                        "title": "Viện, Phòng ban, Trung tâm",
                         "payload": "CLINICS",
                     },
                     {
@@ -742,7 +742,7 @@ let sendMessageReplySpecialization = (sender_psid) => {
                                     },
                                     {
                                         "type": "postback",
-                                        "title": "Phòng khám",
+                                        "title": "Viện, Phòng ban, Trung tâm",
                                         "payload": "SPECIALIZATION",
                                     },
                                     {
@@ -762,7 +762,7 @@ let sendMessageReplySpecialization = (sender_psid) => {
                 "quick_replies": [
                     {
                         "content_type": "text",
-                        "title": "Phòng khám",
+                        "title": "Viện, Phòng ban, Trung tâm",
                         "payload": "CLINICS",
                     },
                     {
@@ -837,7 +837,7 @@ let sendMessageReplyClinics = (sender_psid) => {
                                 "buttons": [
                                     {
                                         "type": "postback",
-                                        "title": "Tất cả phòng khám",
+                                        "title": "Tất cả Viện, Phòng ban, Trung tâm",
                                         "payload": "ALL_CLINICS",
                                     },
                                     {
@@ -906,7 +906,7 @@ let sendMessageAllDoctors = (sender_psid) => {
                     },
                     {
                         "content_type": "text",
-                        "title": "Phòng khám",
+                        "title": "Viện, Phòng ban, Trung tâm",
                         "payload": "CLINICS",
                     },
                     {
@@ -928,7 +928,7 @@ let sendMessageAllClinics = (sender_psid) => {
     return new Promise(async (resolve, reject) => {
         try {
             let response1 = {
-                "text": "Danh sách tất cả phòng khám bạn xem thêm ở link bên dưới nhé:" +
+                "text": "Danh sách tất cả Viện, Phòng ban, Trung tâm bạn xem thêm ở link bên dưới nhé:" +
                     "\n\n 👉 https://doctorcare-v1.herokuapp.com/all-clinics  "
             };
             let response2 = {
@@ -981,7 +981,7 @@ let sendMessageAllSpecializations = (sender_psid) => {
                     },
                     {
                         "content_type": "text",
-                        "title": "Phòng khám",
+                        "title": "Viện, Phòng ban, Trung tâm",
                         "payload": "CLINICS",
                     }
                 ]
@@ -1013,7 +1013,7 @@ let sendMessageDefault = (sender_psid, text) => {
                     },
                     {
                         "content_type": "text",
-                        "title": "Phòng khám",
+                        "title": "Viện, Phòng ban, Trung tâm",
                         "payload": "CLINICS",
                     },
                     {

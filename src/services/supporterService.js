@@ -29,7 +29,7 @@ let postCreatePost = (item) => {
         try {
             let post = await db.Post.create(item);
 
-            // ko đồng bộ các bài đăng dành giới thiệu bác sĩ or chuyên khoa or phòng khám
+            // ko đồng bộ các bài đăng dành giới thiệu bác sĩ or chuyên khoa or Viện, Phòng ban, Trung tâm
             //syncs to elastic
             if (item.forDoctorId === '-1' && item.forClinicId === '-1' && item.forClinicId === '-1') {
                 let plainText = removeMd(item.contentMarkdown);

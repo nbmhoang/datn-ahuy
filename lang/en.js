@@ -27,7 +27,7 @@ export const transMailBookingFailed = {
         <div>Thời gian: ${data.time}</div>
         <div>Ngày: ${data.date}</div>
         <div>Trạng thái: <b>Hủy - ${data.reason}</b></div>
-        <h4>Nếu bạn nhận thấy lỗi từ email này, vui lòng liên hệ với nhà điều hành hỗ trợ: <b> 911 911 </b>. Xin cảm ơn!</h4>`;
+        <h4>Nếu bạn nhận thấy lỗi từ email này, vui lòng liên hệ với hỗ trợ viên bằng SĐT: <b> 911 911 </b>. Xin cảm ơn!</h4>`;
     },
 };
 
@@ -54,7 +54,7 @@ export const transMailRemedy= {
         <br>
         <div>Ví dụ: Họ và tên: Quang Huy, có số điện thoại đăng ký: 0123456789 và sinh: 1910, mật khẩu trích xuất là: <b> quanghuy-012-10 </b> </div>
         <br>
-        <div>Trong trường hợp không nhận được tệp đính kèm cũng như không giải nén được, vui lòng liên hệ với nhà điều hành hỗ trợ. <b>911 911</b></div>
+        <div>Trong trường hợp không nhận được tệp đính kèm cũng như không giải nén được, vui lòng liên hệ liên hệ với hỗ trợ viên bằng SĐT: <b>911 911</b></div>
         <h4>Xin cảm ơn!</h4>`;
     },
 };
