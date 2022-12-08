@@ -60,7 +60,7 @@ function getScheduleDoctorByDate() {
                 } else {
                     html = `
                             <div>
-                                 Bác sĩ "${data.doctor.name}" không có cuộc hẹn vào <b>${value}</b>. Vui lòng chọn lịch khám tiếp theo.
+                                 Bác sĩ "${data.doctor.name}" không có lịch khám vào ngày <b>${value}</b>. Vui lòng chọn lịch khám ở ngày tiếp theo.
                             </div>
                     `;
                     moreInfo = '';
@@ -133,7 +133,7 @@ function specializationGetScheduleDoctorByDate() {
                     html = `
                             <div class="no-schedule">
                                
-                                 Bác sĩ "${data.doctor.name}" không có cuộc hẹn nào vào <b>${value}</b>. Vui lòng chọn lịch khám tiếp theo.
+                                 Bác sĩ "${data.doctor.name}" không có lịch khám nào vào <b>${value}</b>. Vui lòng chọn lịch khám ở ngày tiếp theo.
 
                             </div>
                     `;
