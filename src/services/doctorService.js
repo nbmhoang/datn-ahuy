@@ -347,7 +347,7 @@ let getDoctorSchedules = (data) => {
             let schedules = await db.Schedule.findAll({
                 where: {
                     doctorId: data.doctorId,
-                    date: { [Op.in]: data.threeDaySchedules },
+                    date: { [Op.in]: data.sevenDaySchedules },
                 },
             });
             resolve(schedules)

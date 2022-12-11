@@ -5,27 +5,27 @@ module.exports = {
 
         return queryInterface.bulkInsert('Places', [
             {
-                name: 'New York City',
+                name: 'Huế',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
-                name: 'Los Angeles County',
+                name: 'Sài Gòn',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
-                name: 'Chicago',
+                name: 'Đà Nẵng',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
-                name: 'Childress, Texas',
+                name: 'Quảng Nam',
                 createdAt: new Date(),
                 updatedAt: new Date()
             },
             {
-                name: 'Norton, Kan.',
+                name: 'Hà Nội',
                 createdAt: new Date(),
                 updatedAt: new Date()
             }

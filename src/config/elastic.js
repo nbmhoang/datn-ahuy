@@ -17,33 +17,12 @@
 
 
 // // DELETE /doctorcare_haryphamdev
-// //
+
 // // DELETE /doctorcare_haryphamdev/posts/1
-// //
-// // PUT doctorcare_haryphamdev
-// // {
-// //     "mappings": {
-// //     "type_name": {
-// //         "properties" : {
-// //             "postId" : {
-// //                 "type" : "integer"
-// //             },
-// //             "writerId" : {
-// //                 "type" : "integer"
-// //             },
-// //             "title" : {
-// //                 "type" : "text"
-// //             },
-// //             "content" : {
-// //                 "type" : "text"
-// //             },
-// //             "image" : {
-// //                 "type" : "text"
-// //             }
-// //         }}
+
+
 // // }
-// // }
-// //
+
 // // PUT /doctorcare_haryphamdev/post/2
 // // {
 // //     "postId": "3",
@@ -52,8 +31,8 @@
 // //     "content":"Lorem Ipsum is  doctor haryphamdev simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum",
 // //     "image":"default"
 // // }
-// //
-// //
+
+
 // // GET /doctorcare_haryphamdev/posts/_search
 // // {
 // //     "query": {
