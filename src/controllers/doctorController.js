@@ -21,13 +21,13 @@ function stringToDate(_date, _format, _delimiter) {
 
 let getSchedule = async (req, res) => {
     try {
-        let threeDaySchedules = [];
-        for (let i = 0; i < 3; i++) {
+        let sevenDaySchedules = [];
+        for (let i = 0; i < 7; i++) {
             let date = moment(new Date()).add(i, 'days').locale('en').format('DD/MM/YYYY');
-            threeDaySchedules.push(date);
+            sevenDaySchedules.push(date);
         }
         let data = {
-            threeDaySchedules: threeDaySchedules,
+            sevenDaySchedules: sevenDaySchedules,
             doctorId: req.user.id
         };
         let schedules = await doctorService.getDoctorSchedules(data);
@@ -45,7 +45,7 @@ let getSchedule = async (req, res) => {
         return res.render("main/users/admins/schedule.ejs", {
             user: req.user,
             schedules: schedules,
-            threeDaySchedules: threeDaySchedules
+            sevenDaySchedules: sevenDaySchedules
         })
     } catch (e) {
         console.log(e)

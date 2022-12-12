@@ -37,14 +37,14 @@
                     </select>
                 </div>
                 <div class="form-group col-6">
-                    <label for="clinicDoctor">Thuộc một phòng khám</label>
+                    <label for="clinicDoctor">Thuộc một Viện, Phòng ban, Trung tâm</label>
                     <select id="clinicDoctor" class="form-control" name="clinicDoctor">
                         <% if(doctor.Doctor_User){ %>
                             <% clinics.forEach(function(x) { %>
                                 <option value="<%= x.id %>" <% if(x.id === doctor.Doctor_User.clinicId) {%> đã chọn <%}%>> <%= x.name %> </option>
                             <% }) %>
                         <%}else {%>
-                                <option selected value="-1">Chọn phòng khám</option>
+                                <option selected value="-1">Chọn Viện, Phòng ban, Trung tâm</option>
                             <% clinics.forEach(function(x) { %>
                                     <option value="<%= x.id %>" > <%= x.name %> </option>
                                 <% }) %>

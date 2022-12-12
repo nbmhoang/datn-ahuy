@@ -31,9 +31,9 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="clinic">Thuộc về phòng khám</label>
+                    <label for="clinic">Thuộc về Viện, Phòng ban, Trung tâm</label>
                     <select id="clinic" class="form-control" name="clinic">
-                        <option selected>Chọn phòng khám</option>
+                        <option selected>Chọn Viện, Phòng ban, Trung tâm</option>
                         <% clinics.forEach(function(x) { %>
                             <option value="<%= x.id %>"> <%= x.name %> </option>
                         <% }) %>

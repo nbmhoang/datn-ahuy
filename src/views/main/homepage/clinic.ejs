@@ -86,8 +86,8 @@
                                                  class=" d-flex flex-row  flex-wrap text-decoration-none">
                                                 <% if(doctor.getDataValue('schedules').length === 0){ %>
                                                     <div class="no-schedule">
-                                                        Bác sĩ "<%= doctor.User.name %>" không có cuộc hẹn vào
-                                                        <b><%= sevenDaySchedule[0] %></b>. Vui lòng chọn lịch khám tiếp theo.
+                                                        Bác sĩ "<%= doctor.User.name %>" không có lịch khám nào vào
+                                                        <b><%= sevenDaySchedule[0] %></b>. Vui lòng chọn lịch khám ở ngày tiếp theo.
                                                     </div>
                                                 <% } %>
                                                 <% doctor.getDataValue('schedules').forEach( function(x, index) { %>

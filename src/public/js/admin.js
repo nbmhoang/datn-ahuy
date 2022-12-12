@@ -1112,7 +1112,7 @@ function handleSendFormsForPatient() {
                 $('#btnSendFilesForms').prop('disabled', false);
                 $(`.fa-exclamation-circle[data-patient-id=${data.patient.id}]`).css('color', '#36b9cc');
                 $(`.fa-exclamation-circle[data-patient-id=${data.patient.id}]`).removeClass('fa-exclamation-circle').addClass('fa-check-circle')
-                alertify.success('Gửi phác đồ điều trị thành công');
+                alertify.success('Gửi phác đồ điều trị và hóa đơn thành công');
             },
             error: function(error) {
                 alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');

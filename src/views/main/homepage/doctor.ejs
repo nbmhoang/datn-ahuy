@@ -91,8 +91,8 @@
                              class="doctor-schedule d-flex flex-row  flex-wrap text-decoration-none">
                             <% if(doctor.Schedules.length === 0){ %>
                                 <div>
-                                    Bác sĩ "<%= doctor.name %>" không có lịch khám vào
-                                    <b><%= sevenDaySchedule[0] %></b>. Vui lòng chọn lịch khám tiếp theo.
+                                    Bác sĩ "<%= doctor.name %>" không có lịch khám nào vào
+                                    <b><%= sevenDaySchedule[0] %></b>. Vui lòng chọn lịch khám ở ngày tiếp theo.
                                 </div>
                             <% } %>
                                 <% doctor.Schedules.forEach( function(x, index) { %>
@@ -308,7 +308,7 @@
                 },
                 errorCallback: function(e) {
                     //If there is an error, alert the user about it.
-                    alert("No results found.");
+                    // alert("No results found.");
                 }
             };
 

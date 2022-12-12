@@ -60,7 +60,7 @@ function getScheduleDoctorByDate() {
                 } else {
                     html = `
                             <div>
-                                 Bác sĩ "${data.doctor.name}" không có cuộc hẹn vào <b>${value}</b>. Vui lòng chọn lịch khám tiếp theo.
+                                 Bác sĩ "${data.doctor.name}" không có lịch khám vào ngày <b>${value}</b>. Vui lòng chọn lịch khám ở ngày tiếp theo.
                             </div>
                     `;
                     moreInfo = '';
@@ -133,7 +133,7 @@ function specializationGetScheduleDoctorByDate() {
                     html = `
                             <div class="no-schedule">
                                
-                                 Bác sĩ "${data.doctor.name}" không có cuộc hẹn nào vào <b>${value}</b>. Vui lòng chọn lịch khám tiếp theo.
+                                 Bác sĩ "${data.doctor.name}" không có lịch khám nào vào <b>${value}</b>. Vui lòng chọn lịch khám ở ngày tiếp theo.
 
                             </div>
                     `;
@@ -586,7 +586,7 @@ function handleSearchHomepage() {
                     data.clinics.forEach((clinic) => {
                         html += `
                          <div class="child-info">
-                                <a href="detail/clinic/${clinic.id}">Phòng khám - ${clinic.name}</a>
+                                <a href="detail/clinic/${clinic.id}">Viện, Phòng ban, Trung tâm - ${clinic.name}</a>
                         </div>
                         `;
                     });
@@ -594,7 +594,7 @@ function handleSearchHomepage() {
                     data.specializations.forEach((specialization) => {
                         html += `
                          <div class="child-info">
-                                <a href="detail/specialization/${specialization.id}">Chuyên gia - ${specialization.name}</a>
+                                <a href="detail/specialization/${specialization.id}">Chuyên khoa - ${specialization.name}</a>
                         </div>
                         `;
                     });

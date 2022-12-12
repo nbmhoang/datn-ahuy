@@ -35,7 +35,7 @@
                                     <option value="<%= x.id %>" <% if(x.id === post.forClinicId){%> selected <%}%>> <%= x.name %> </option>
                                 <% }) %>
                             <% } else { %>
-                                <option value="-1" selected>Không có phòng khám nào được chọn</option>
+                                <option value="-1" selected>Không có Viện, Phòng ban, Trung tâm nào được chọn</option>
                                 <% clinics.forEach(function(x) { %>
                                     <option value="<%= x.id %>"> <%= x.name %> </option>
                                 <% }) %>

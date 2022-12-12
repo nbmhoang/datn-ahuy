@@ -224,10 +224,10 @@ let createAllDoctorsSchedule = () => {
             let timeArr = ['08:00 - 09:00', '09:00 - 10:00', '10:00 - 11:00', '11:00 - 12:00',
                 '13:00 - 14:00', '14:00 - 15:00', '15:00 - 16:00', '16:00 - 17:00'
             ]
-            let threeDaySchedules = [];
+            let sevenDaySchedules = [];
             for (let i = 0; i < 7; i++) {
                 let date = moment(new Date()).add(i, 'days').locale('en').format('DD/MM/YYYY');
-                threeDaySchedules.push(date);
+                sevenDaySchedules.push(date);
             }
 
             let doctors = await db.User.findAll({
@@ -245,7 +245,7 @@ let createAllDoctorsSchedule = () => {
             let check = await db.Schedule.findAll({
                 where: {
                     doctorId: doctors[0].id,
-                    date: threeDaySchedules[0],
+                    date: sevenDaySchedules[0],
                     time: timeArr[0]
                 }
             })
@@ -256,7 +256,7 @@ let createAllDoctorsSchedule = () => {
                 if (doctors && doctors.length > 0) {
                     await Promise.all(
                         doctors.map((doctor) => {
-                            threeDaySchedules.map(day => {
+                            sevenDaySchedules.map(day => {
                                 timeArr.map(async (time) => {
                                     let schedule = {
                                         doctorId: doctor.id,
