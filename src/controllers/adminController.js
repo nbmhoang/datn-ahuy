@@ -100,8 +100,23 @@ let storageImageClinic = multer.diskStorage({
     }
 });
 
+const storageImageSpecialization = multer.diskStorage({
+    destination: (req, file, callback) => {
+        callback(null, "src/public/images/specializations");
+    },
+    filename: (req, file, callback) => {
+        let imageName = `${Date.now()}-${file.originalname}`;
+        callback(null, imageName);
+    }
+});
+
 let imageClinicUploadFile = multer({
     storage: storageImageClinic,
+    limits: { fileSize: 1048576 * 20 }
+}).single("image");
+
+const imageSpecializationUploadFile = multer({
+    storage: storageImageSpecialization,
     limits: { fileSize: 1048576 * 20 }
 }).single("image");
 
@@ -454,6 +469,111 @@ const postCreateSupporter = async (req, res) => {
     }
 };
 
+const getPageAddSpecialization = async(req, res) => {
+    try {
+        return res.render('main/users/admins/createSpecialization.ejs', {
+            user: req.user,
+        });
+    } catch(e) {
+        console.log(e);
+    }
+}
+
+const postCreateSpecializationWithoutFile = async (req, res) => {
+    try {
+        const specialization = await specializationService.addSpecialization(req.body);
+        return res.status(200).json({
+            message: 'success',
+            specialization
+        });
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json(e);
+    }
+};
+
+const postCreateSpecialization = (req, res) => {
+    imageSpecializationUploadFile(req, res, async (err) => {
+        if (err) {
+            console.log(err);
+            if (err.message) {
+                console.log(err.message);
+                return res.status(500).send(err.message);
+            } else {
+                console.log(err);
+                return res.status(500).send(err);
+            }
+        }
+
+        try {
+            const item = req.body;
+            const imageSpecialization = req.file;
+            item.image = imageSpecialization.filename;
+            const specialization = await specializationService.addSpecialization(item);
+            return res.status(200).json({
+                message: 'success',
+                specialization
+            });
+
+        } catch (e) {
+            console.log(e);
+            return res.status(500).send(e);
+        }
+    });
+};
+
+const getEditSpecialization = async (req, res) => {
+    const specialization = await specializationService.getSpecializationById(req.params.id);
+    console.log(specialization.name)
+    return res.render("main/users/admins/editSpecialization.ejs", {
+        user: req.user,
+        specialization: specialization.specialization
+    });
+};
+
+const putUpdateSpecializationWithoutFile = async (req, res) => {
+    try {
+        const specialization = await specializationService.updateSpecialization(req.body);
+        return res.status(200).json({
+            message: 'update success',
+            specialization
+        })
+    } catch (e) {
+        console.log(e);
+        return res.status(500).json(e);
+    }
+};
+
+const putUpdateSpecialization = (req, res) => {
+    imageSpecializationUploadFile(req, res, async (err) => {
+        if (err) {
+            console.log(err);
+            if (err.message) {
+                console.log(err.message);
+                return res.status(500).send(err.message);
+            } else {
+                console.log(err);
+                return res.status(500).send(err);
+            }
+        }
+
+        try {
+            const item = req.body;
+            const imageSpecialization = req.file;
+            item.image = imageSpecialization.filename;
+            let specialization = await specializationService.updateSpecialization(item);
+            return res.status(200).json({
+                message: 'update specialization successful',
+                specialization
+            });
+
+        } catch (e) {
+            console.log(e);
+            return res.status(500).send(e);
+        }
+    });
+};
+
 module.exports = {
     getManageDoctor: getManageDoctor,
     getCreateDoctor: getCreateDoctor,
@@ -485,5 +605,11 @@ module.exports = {
 
     getCreateSupporter,
     postCreateSupporter,
-    deleteSupporterById
+    deleteSupporterById,
+    getPageAddSpecialization,
+    postCreateSpecializationWithoutFile,
+    postCreateSpecialization,
+    getEditSpecialization,
+    putUpdateSpecializationWithoutFile,
+    putUpdateSpecialization
 };

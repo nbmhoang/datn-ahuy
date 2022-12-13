@@ -1,0 +1,35 @@
+<% extend("master.ejs") %>
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Thêm chuyên khoa</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row">
+    <div class="col-10 mx-auto">
+        <form id="formCreateNewSpecialization">
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="name">Tên chuyên khoa</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Tên chuyên khoa">
+                </div>
+                
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="image-specialization">Tải lên hình ảnh</label>
+                    <input type="file" id="image-specialization" accept="image/*" onchange="loadFile(event)">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="btnCreateNewSpecialization">Tạo</button>
+        </form>
+    </div>
+</div>
+
+<!-- Content Row -->
+<script>
+    $(document).ready(function() {
+        $("div #collapseUtilities").addClass('show');
+        $("div #collapseUtilities").find($("#aManageSpecialization")).addClass("active");
+    })
+</script>

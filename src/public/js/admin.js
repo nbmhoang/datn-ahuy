@@ -1256,88 +1256,118 @@ const showModalPrintForms = () => {
         let isSend = $(this).attr('data-is-send-forms');
 
         window.open(`${window.location.origin}/doctor/manage/appointment/print/${patientId}`, '_blank').focus();
+    });
+}
 
-        // $.ajax({
-        //     url: `${window.location.origin}/api/get-detail-patient-by-id`,
-        //     method: "POST",
-        //     data: { patientId: patientId },
-        //     success: function(data) {
-        //         let html = '';
-        //         $('#divGenerateFilesSend').empty();
-        //         $('#emailPatient').val(data.email);
-        //         $('#agePatient').val(new Date().getFullYear() - data.year);
-        //         $('#address').val(data.address)
-        //         $('#gender').val(data.gender === 'male' ? 'Nam' : 'Nữ')
-        //         $('#btnSendFilesForms').attr('data-patient-id', patientId);
-        //         if (data.ExtraInfo) {
-        //             if (data.ExtraInfo.sendForms) {
-        //                 let images = JSON.parse(data.ExtraInfo.sendForms);
-        //                 for (let [ key, value ] of Object.entries(images)) {
-        //                     html += `
-        //                       <div class="form-row">
-        //                         <div class="form-group col-9">
-        //                             <a type="text" class="form-control" id="nameFileSent" target="_blank" href="/images/patients/remedy/${value}" readonly="true" title="${value}" >
-        //                        ${value}
-        //                         </a>
-        //                         </div>
-        //                      </div>`;
-        //                 }
-        //             } else {
-        //                 html = `
-        //                   <div class="form-row">
-        //                     <div class="form-group col-9">
-        //                         <label class="col-form-label text-label" for="nameFileSent"> Tên file:</label>
-        //                         <input type="text" class="form-control" id="nameFileSent" name="nameFileSent" disabled>
-        //                     </div>
-        //                  </div>`
-        //             }
-        //         }
-        //         $('#divGenerateFilesSend').append(html);
-        //         $('#modalSendForms').modal('show');
+const handleCreateSpecializationWithoutFile = (data) => {
+    $.ajax({
+        method: "POST",
+        url: `${window.location.origin}/admin/specialization/create-without-file`,
+        data: data,
+        success: function(data) {
+            alert('A new specialization is created successfully');
+            window.location.href = `${window.location.origin}/users/manage/specialization`;
+        },
+        error: function(error) {
+            alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+            console.log(error)
+        }
+    });
+}
 
-        //         const doc = new jsPDF();       
-            
-        //         const elementHandler = {
-        //             '#ignorePDF': function (element, renderer) {
-        //                 return true;
-        //             }
-        //         };
-        //         // const source = window.document.getElementsByName('test-ne')[0]
-        //         // const source = window.document.getElementById('accordionSidebar')
-        //         // console.log(source)
-        //         // doc.html(
-        //         //     source,
-        //         //     {
-        //         //         // callback: (doc) => setTimeout(() => doc.save(), 2000),
-        //         //         filename: `${patientId}.pdf`,
-        //         //         width: 800
-        //         //     }
-        //         // )
+const handleCreateSpecialization = (data) => {
+    $.ajax({
+        method: "POST",
+        url: `${window.location.origin}/admin/specialization/create`,
+        data: data,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            alert('A new specialization is created successfully');
+            window.location.href = `${window.location.origin}/users/manage/specialization`;
+        },
+        error: function(error) {
+            alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+            console.log(error)
+        }
+    });
+}
 
-        //         // doc.output('dataurlnewwindow');
-        //         setTimeout(() => {
-        //             const htmlElement = document.getElementsByName("test-ne")[0]
-        //             html2canvas(htmlElement, {
-        //                 allowTaint: true,
-        //                 useCORS: true,
-        //               })
-        //             .then(function (canvas) {
-        //                 // It will return a canvas element
-        //                 let image = canvas.toDataURL("image/png", 0.5);
-        //                 console.log(image)
-        //                 doc.addImage(image, 'JPEG', 0, 0, 800, 670);
-        //                 doc.output('dataurlnewwindow');
-        //             });
-                
-        //         }, 2000);
-                
-                
-        //     },
-        //     error: function(error) {
-        //         console.log(error);
-        //         alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
-        //     }
-        // });
+const createNewSpecialization = () => {
+    $("#btnCreateNewSpecialization").on('click', function(e) {
+        e.preventDefault();
+        const formData = new FormData($('form#formCreateNewSpecialization')[0]);
+        if ($('#image-specialization').val()) {
+            formData.append('image', document.getElementById('image-specialization').files[0])
+            handleCreateSpecialization(formData)
+        } else {
+            const data = {};
+            for (let pair of formData.entries()) {
+                data[pair[0]] = pair[1]
+            }
+            handleCreateSpecializationWithoutFile(data);
+
+        }
+    });
+}
+
+const handleUpdateSpecialization = (formData) => {
+    $.ajax({
+        method: "PUT",
+        url: `${window.location.origin}/admin/specialization/update`,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            alert('Update succeeds');
+            window.location.href = `${window.location.origin}/users/manage/specialization`;
+        },
+        error: function(error) {
+            alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+            console.log(error);
+        }
+    });
+}
+
+const handleUpdateSpecializationWithoutFile = (data) => {
+    $.ajax({
+        method: "PUT",
+        url: `${window.location.origin}/admin/specialization/update-without-file`,
+        data: data,
+        success: function(data) {
+            alert('Update succeed');
+            window.location.href = `${window.location.origin}/users/manage/specialization`;
+        },
+        error: function(error) {
+            alertify.error('Đã xảy ra lỗi, vui lòng thử lại sau!');
+            console.log(error);
+        }
+    });
+}
+
+const updateSpecialization = () => {
+    $('#btnUpdateSpecialization').on('click', function(e) {
+        e.preventDefault();
+        const specializationId = $('#btnUpdateSpecialization').data('specialization-id');
+        const formData = new FormData($('form#formUpdateSpecialization')[0]);
+
+        //contain file upload
+        if ($('#image-specialization').val()) {
+            formData.append('image', document.getElementById('image-specialization').files[0]);
+            formData.append('id', specializationId);
+            handleUpdateSpecialization(formData);
+        } else {
+            // create without file upload
+            let data = {
+                id: specializationId
+            };
+            for (let pair of formData.entries()) {
+                data[pair[0]] = pair[1]
+            }
+            handleUpdateSpecializationWithoutFile(data);
+        }
     });
 }
 
@@ -1422,5 +1452,7 @@ $(document).ready(function(e) {
     createNewSupporter();
     deleteSupporterById();
     showModalPrintForms();
+    createNewSpecialization();
+    updateSpecialization();
 });
 

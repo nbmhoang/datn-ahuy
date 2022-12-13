@@ -96,6 +96,12 @@ let initRoutes = (app) => {
     router.get('/posts/search/', home.getPostSearch);
 
     router.get('/users/manage/specialization', auth.checkLoggedIn, admin.getSpecializationPage);
+    router.get('/users/manage/specialization/create', auth.checkLoggedIn, admin.getPageAddSpecialization);
+    router.post('/admin/specialization/create-without-file', auth.checkLoggedIn, admin.postCreateSpecializationWithoutFile);
+    router.post('/admin/specialization/create', auth.checkLoggedIn, admin.postCreateSpecialization);
+    router.get('/users/specialization/edit/:id', auth.checkLoggedIn, admin.getEditSpecialization);
+    router.put('/admin/specialization/update', auth.checkLoggedIn, admin.putUpdateSpecialization);
+    router.put('/admin/specialization/update-without-file', auth.checkLoggedIn, admin.putUpdateSpecializationWithoutFile);
     router.get('/users/manage/supporter', auth.checkLoggedIn, admin.getSupporterPage);
     router.get('/users/manage/supporter/create', auth.checkLoggedIn, admin.getCreateSupporter);
     router.post('/admin/supporter/create', auth.checkLoggedIn, admin.postCreateSupporter);

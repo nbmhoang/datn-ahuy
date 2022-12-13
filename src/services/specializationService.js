@@ -71,8 +71,39 @@ let deleteSpecializationById = (id) => {
     });
 };
 
+const addSpecialization = (data) => {
+    try {
+        return new Promise(async (resolve, reject) => {
+            try {
+                let specialization = await db.Specialization.create(data);
+                resolve(specialization);
+            } catch (e) {
+                reject(e);
+            }
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+const updateSpecialization = (data) => {
+    return new Promise(async (resolve, reject) => {
+        try {
+            const specialization = await db.Specialization.findOne({
+                where: { id: data.id }
+            });
+            await specialization.update(data);
+            resolve(true)
+        } catch (e) {
+            reject(e);
+        }
+    });
+};
+
 module.exports = {
     getSpecializationById: getSpecializationById,
     getAllSpecializations: getAllSpecializations,
-    deleteSpecializationById: deleteSpecializationById
+    deleteSpecializationById: deleteSpecializationById,
+    addSpecialization,
+    updateSpecialization
 };
