@@ -648,6 +648,9 @@ function loadNewPatientsForSupporter() {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td>${convertStringToDateClient(patient.updatedAt)}      </td>
                     <td> 
                     <button type="button"  data-patient-id="${patient.id}" class="ml-3 btn btn-primary btn-new-patient-ok"> Tiếp nhận</button>
@@ -663,6 +666,9 @@ function loadNewPatientsForSupporter() {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td> ${convertStringToDateClient(patient.updatedAt)}      </td>
                     <td> 
                     <button  data-patient-id="${patient.id}"  class="ml-3 btn btn-warning btn-pending-patient">Xác nhận</button>
@@ -678,6 +684,9 @@ function loadNewPatientsForSupporter() {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td> ${convertStringToDateClient(patient.updatedAt)}     </td>
                     <td> 
                     <button  type="button" data-patient-id="${patient.id}"  class="ml-3 btn btn-info btn-confirmed-patient"> Thông tin</button>
@@ -692,6 +701,9 @@ function loadNewPatientsForSupporter() {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td> ${convertStringToDateClient(patient.updatedAt)} </td>
                     <td> 
                     <button   data-patient-id="${patient.id}"  class="ml-3 btn btn-primary btn-history-cancel-patient">Lịch sử</button>
@@ -803,6 +815,9 @@ function addNewRowTablePending(patient) {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td> ${convertStringToDateClient(patient.updatedAt)}     </td>
                     <td> 
                     <button  data-patient-id="${patient.id}"  class="ml-3 btn btn-warning btn-pending-patient">Xác nhận</button>
@@ -820,6 +835,9 @@ function addNewRowTableConfirmed(patient) {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td> ${convertStringToDateClient(patient.updatedAt)}     </td>
                     <td> 
                     <button  type="button" data-patient-id="${patient.id}"  class="ml-3 btn btn-info btn-confirmed-patient"> Thông tin</button>
@@ -836,6 +854,9 @@ function addNewRowTableCanceled(patient) {
                     <td> ${patient.id} - ${patient.name}   </td>
                     <td> ${patient.phone}     </td>
                     <td> ${patient.email}     </td>
+                    <td> ${patient.User.name} </td>
+                    <td> ${patient.dateBooking} </td>
+                    <td> ${patient.timeBooking} </td>
                     <td> ${convertStringToDateClient(patient.updatedAt)} </td>
                     <td> 
                     <button   data-patient-id="${patient.id}"  class="ml-3 btn btn-primary btn-history-cancel-patient">Lịch sử</button>
@@ -1053,6 +1074,8 @@ function showModalSendForms() {
                 $('#agePatient').val(new Date().getFullYear() - data.year);
                 $('#address').val(data.address)
                 $('#gender').val(data.gender === 'male' ? 'Nam' : 'Nữ')
+                $('#prediction').val(data.ExtraInfo.prediction)
+                $('#prescription').val(data.ExtraInfo.prescription)
                 $('#btnSendFilesForms').attr('data-patient-id', patientId);
                 if (data.ExtraInfo) {
                     if (data.ExtraInfo.sendForms) {

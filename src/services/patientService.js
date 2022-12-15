@@ -42,6 +42,10 @@ let getForPatientsTabs = () => {
                     statusId: statusNewId
                 },
                 order: [ [ 'updatedAt', 'DESC' ] ],
+                include: [{
+                    model: db.User,
+                    required: true
+                }]
             });
 
             let pendingPatients = await db.Patient.findAll({
@@ -49,6 +53,10 @@ let getForPatientsTabs = () => {
                     statusId: statusPendingId
                 },
                 order: [ [ 'updatedAt', 'DESC' ] ],
+                include: [{
+                    model: db.User,
+                    required: true
+                }]
             });
 
             let confirmedPatients = await db.Patient.findAll({
@@ -56,6 +64,10 @@ let getForPatientsTabs = () => {
                     statusId: statusSuccessId
                 },
                 order: [ [ 'updatedAt', 'DESC' ] ],
+                include: [{
+                    model: db.User,
+                    required: true
+                }]
             });
 
             let canceledPatients = await db.Patient.findAll({
@@ -63,6 +75,10 @@ let getForPatientsTabs = () => {
                     statusId: statusFailedId
                 },
                 order: [ [ 'updatedAt', 'DESC' ] ],
+                include: [{
+                    model: db.User,
+                    required: true
+                }]
             });
 
             resolve({
