@@ -201,13 +201,15 @@ let getInfoStatistical = (month) => {
 let getInfoDoctorChart = (month) => {
     return new Promise(async (resolve, reject) => {
         try{
-            let startDate = Date.parse(stringToDate(`01/${month}/2020`, "dd/MM/yyyy", "/"));
-            let endDate = Date.parse(stringToDate(`31/${month}/2020`, "dd/MM/yyyy", "/"));
+            const currentYear = moment().format('YYYY');
+            const startDate = moment(`01/${month}/${currentYear}`, 'DD/MM/YYYY');
+            const endDate = moment(startDate);
+            endDate.endOf('month');
             let patients = await db.Patient.findAndCountAll({
                 attributes: [ 'id','doctorId','statusId','isSentForms' ],
                 where: {
                     createdAt: {
-                        [Op.between]: [ startDate, endDate ],
+                        [Op.between]: [ startDate.valueOf(), endDate.valueOf() ],
                     },
                 }
             });
